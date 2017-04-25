@@ -1,0 +1,24 @@
+{
+  "name": "ts-interface-enum",
+  "version": "1.0.0",
+  "description": "Converts typescript interfaces to enums.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "typescript",
+    "interface",
+    "enum"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.3.0",
+    "fs-extra": "^2.1.2",
+    "jsonfile": "^3.0.0",
+    "klaw": "^1.3.1",
+    "lodash": "^4.17.4",
+    "through2": "^2.0.3"
+  }
+}
