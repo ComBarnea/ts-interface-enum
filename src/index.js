@@ -131,6 +131,8 @@ function checkFiles(next) {
  * @param {Function} nextPath
  */
 function markFile(singlePathString, nextPath) {
+    // reset global index
+    markFileRegEx.lastIndex = 0;
     fse.readFile(singlePathString, (err, fileBuffer) => {
         if(err) return nextPath(err);
 
