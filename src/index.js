@@ -52,23 +52,31 @@ const excludeNotTs = through2.obj(function excludeNotTsFunction(item, enc, next)
 const markFileRegEx = new RegExp(moduleConfig.MARK_NAME, 'g');
 const markInterfacesRegEx = new RegExp(moduleConfig.MARK_INTERFACES, 'gm');
 
-
-const jobs = [loadConfig, iterateConfigPaths, checkFiles, removeOldEnumFiles, processFiles, createFiles];
 const filesFound = [];
 const filesToProcess = [];
 const filesToCreate = [];
 let configDataObject;
 
-asyncLib.waterfall(jobs, (err) => {
+module.exports = function tsInterfaceEnum(configOptionsData) {
+  const jobs = [loadConfig, iterateConfigPaths, checkFiles, removeOldEnumFiles, processFiles, createFiles];
+  if (configOptionsData) configDataObject = configOptionsData;
+
+  asyncLib.waterfall(jobs, (err) => {
     if(err) {
-        console.log(err);
+      console.log(err);
     }
 
     console.log('All enum file generated.');
-});
+  });
+
+};
 
 
 function loadConfig(next) {
+    if(configDataObject) {
+      return next();
+    }
+
     jf.readFile(`./${moduleConfig.CONFIG_NAME}.json`, (err, data) => {
         if(err) return next('Error loading config file.');
 
