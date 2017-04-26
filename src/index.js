@@ -9,7 +9,7 @@ const _  = require('lodash');
 const asyncLib  = require('async');
 
 const moduleConfig = {
-    CONFIG_NAME: 'interToEnum.config',
+    CONFIG_NAME: 'interface-enum',
     MARK_NAME: 'generateInterfaceToEnum',
     ENUM_FILE_SUFFIX: '.interfaceEnums.ts',
     FILE_EXTENSION: '.ts',
@@ -403,7 +403,6 @@ ${allKeyString}
  * @return {{enumFileFull: string, enumFileName: string}}
  */
 function getEnumFileData(filePath) {
-    console.log(filePath);
     const fileName = path.basename(filePath, moduleConfig.FILE_EXTENSION);
     const dirName = path.dirname(filePath);
     const enumFileName = fileName + moduleConfig.ENUM_FILE_SUFFIX;
