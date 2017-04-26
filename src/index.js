@@ -57,15 +57,22 @@ const filesToProcess = [];
 const filesToCreate = [];
 let configDataObject;
 
-module.exports = function tsInterfaceEnum(configOptionsData) {
+module.exports = function tsInterfaceEnum(configOptionsData, cb) {
   const jobs = [loadConfig, iterateConfigPaths, checkFiles, removeOldEnumFiles, processFiles, createFiles];
+
+  if (!cb) {
+      cb = configOptionsData;
+      configOptionsData = null;
+  }
+
   if (configOptionsData) configDataObject = configOptionsData;
 
   asyncLib.waterfall(jobs, (err) => {
     if(err) {
-      console.log(err);
+      return cb(err);
     }
 
+    cb();
     console.log('All enum file generated.');
   });
 
